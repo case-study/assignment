@@ -1,0 +1,12 @@
+<p>
+  <strong>Name:</strong>
+  <%= @monument.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @monument.description %>
+</p>
+
+<%= link_to 'Edit', edit_collection_monument_path(@monument.collection, @monument) %> |
+<%= link_to 'Back', collection_monuments_path(@monument.collection) %>

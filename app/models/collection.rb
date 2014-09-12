@@ -1,4 +1,5 @@
 class Collection < ActiveRecord::Base
     belongs_to :user
-    validates :name, presence: true
+    has_many :monuments
+    validates :name, presence: true, :length => { :maximum => 100 }
 end
