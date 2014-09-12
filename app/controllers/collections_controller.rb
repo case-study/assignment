@@ -1,10 +1,11 @@
 class CollectionsController < ApplicationController
   before_action :set_collection, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /collections
   # GET /collections.json
   def index
-    @collections = Collection.all
+    @collections = current_user.collections
   end
 
   # GET /collections/1
@@ -14,7 +15,7 @@ class CollectionsController < ApplicationController
 
   # GET /collections/new
   def new
-    @collection = Collection.new
+    @collection = current_user.collections.new
   end
 
   # GET /collections/1/edit
@@ -24,7 +25,7 @@ class CollectionsController < ApplicationController
   # POST /collections
   # POST /collections.json
   def create
-    @collection = Collection.new(collection_params)
+    @collection = current_user.collections.new(collection_params)
 
     respond_to do |format|
       if @collection.save
@@ -64,7 +65,10 @@ class CollectionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_collection
-      @collection = Collection.find(params[:id])
+      unless @collection = current_user.collections.where(id: params[:id]).first
+        flash[:alert] = 'Collection not found.'
+        redirect_to action: "index"
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
