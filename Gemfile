@@ -29,6 +29,9 @@ gem 'spring',        group: :development
 # User Auth
 gem 'devise', '~> 3.3.0'
 
+# Category Taggings
+gem 'acts-as-taggable-on', '~> 3.4.1'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

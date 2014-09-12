@@ -8,5 +8,10 @@
   <%= @monument.description %>
 </p>
 
+<p>
+  <strong>Categories:</strong>
+  <%= @monument.category_list %>
+</p>
+
 <%= link_to 'Edit', edit_collection_monument_path(@monument.collection, @monument) %> |
 <%= link_to 'Back', collection_monuments_path(@monument.collection) %>
