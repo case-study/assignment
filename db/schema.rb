@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20140912151258) do
     t.datetime "updated_at"
   end
 
+  add_index "monuments", ["collection_id"], name: "index_monuments_on_collection_id"
+
   create_table "users", force: true do |t|
     t.string   "email",               default: "", null: false
     t.string   "encrypted_password",  default: "", null: false

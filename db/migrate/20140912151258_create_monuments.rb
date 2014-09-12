@@ -7,5 +7,7 @@ class CreateMonuments < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :monuments, :collection_id
   end
 end
