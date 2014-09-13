@@ -1,0 +1,24 @@
+<%= form_tag(method: "post") do %>
+
+  Search By:
+  <%= radio_button_tag(:search_by, "name", :checked => true) %>
+  <%= label_tag(:search_by_name, "Name") %>
+  <%= radio_button_tag(:search_by, "category") %>
+  <%= label_tag(:search_by_category, "Category") %>
+
+  <br>
+  <%= label_tag(:keywords, "Search for:") %>
+  <%= text_field_tag(:keywords) %>
+
+  <br>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<% if @monuments %>
+  <br><br>
+  Found <%= @monuments.length %> results
+  <br><br>
+  <% if @monuments.length > 0 %>
+    <%= render 'list_monuments' %>
+  <% end %>
+<% end %>

@@ -1,5 +1,5 @@
 class MonumentsController < ApplicationController
-  before_action :verify_and_set_collection
+  before_action :verify_and_set_collection, except: [:search]
   before_action :set_monument, only: [:show, :edit, :update, :destroy]
 
   # GET /monuments
@@ -60,6 +60,17 @@ class MonumentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to collection_monuments_url(@collection), notice: 'Monument was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def search
+    @monuments = nil
+    if request.post?
+      if params[:search_by] == "name"
+        @monuments = current_user.monuments.where("name LIKE  ?", "%#{params[:keywords]}%")
+      else
+        @monuments = current_user.monuments.tagged_with(params[:keywords].split(","), :any => true, :wild => true)
+      end
     end
   end
 

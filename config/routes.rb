@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root to: "collections#index"
 
+  get 'search', to: 'monuments#search'
+  post 'search', to: 'monuments#search'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
