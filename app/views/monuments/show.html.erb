@@ -13,5 +13,6 @@
   <%= @monument.category_list %>
 </p>
 
+<%= link_to 'Show Pictures', monument_pictures_path(@monument) %> |
 <%= link_to 'Edit', edit_collection_monument_path(@monument.collection, @monument) %> |
 <%= link_to 'Back', collection_monuments_path(@monument.collection) %>

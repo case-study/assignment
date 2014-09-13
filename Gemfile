@@ -32,6 +32,9 @@ gem 'devise', '~> 3.3.0'
 # Category Taggings
 gem 'acts-as-taggable-on', '~> 3.4.1'
 
+# Attachments photo uplaods
+gem "paperclip", '~> 4.2.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

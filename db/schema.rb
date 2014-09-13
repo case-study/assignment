@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140912202508) do
+ActiveRecord::Schema.define(version: 20140913101018) do
 
   create_table "collections", force: true do |t|
     t.string   "name"
@@ -34,6 +34,19 @@ ActiveRecord::Schema.define(version: 20140912202508) do
   add_index "monuments", ["collection_id"], name: "index_monuments_on_collection_id"
   add_index "monuments", ["name"], name: "index_monuments_on_name"
   add_index "monuments", ["user_id"], name: "index_monuments_on_user_id"
+
+  create_table "pictures", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.date     "taken_on"
+    t.integer  "monument_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

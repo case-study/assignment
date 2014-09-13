@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @picture.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @picture.description %>
+</p>
+
+<p>
+  <strong>Taken on:</strong>
+  <%= @picture.taken_on %>
+</p>
+
+<%= image_tag @picture.photo.url %><br>
+<%= image_tag @picture.photo.url(:medium) %><br>
+<%= image_tag @picture.photo.url(:thumb) %><br>
+
+<%= link_to 'Edit', edit_monument_picture_path(@picture.monument, @picture) %> |
+<%= link_to 'Back', monument_pictures_path(@picture.monument) %>
