@@ -28,4 +28,5 @@
 
 <br>
 
-<%= link_to 'New Picture', new_monument_picture_path(@monument) %>
+<%= link_to 'New Picture', new_monument_picture_path(@monument) %> |
+<%= link_to 'Back to Monuments', collection_monuments_path(@monument.collection) %>
