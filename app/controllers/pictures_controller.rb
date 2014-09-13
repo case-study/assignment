@@ -63,20 +63,24 @@ class PicturesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def verify_and_set_monument
-      unless @monument = current_user.monuments.where(id: params[:monument_id]).first
-        flash[:alert] = 'Monument not found.'
-        redirect_to controller: "collections", action: "index"
-      end
-    end
 
-    def set_picture
-      @picture = Picture.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def verify_and_set_monument
+    # binding.pry
+    unless @monument = current_user.monuments
+        .where(id: params[:monument_id]).first
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def picture_params
-      params.require(:picture).permit(:name, :description, :taken_on, :photo)
+      flash[:alert] = 'Monument not found.'
+      redirect_to controller: "collections", action: "index"
     end
+  end
+
+  def set_picture
+    @picture = Picture.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def picture_params
+    params.require(:picture).permit(:name, :description, :taken_on, :photo)
+  end
 end

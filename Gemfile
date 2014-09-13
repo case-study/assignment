@@ -23,9 +23,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
-
 # User Auth
 gem 'devise', '~> 3.3.0'
 
@@ -47,3 +44,22 @@ gem "paperclip", '~> 4.2.0'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+group :development do
+  gem 'guard-rspec', '~> 4.2.8', require: false
+  gem 'guard-livereload'
+  gem 'spring', '~> 1.1.3'
+  gem 'spring-commands-rspec'
+  gem 'pry-rails', '~> 0.3.2'
+end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 2.14.2'
+  gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'minitest'
+end
+
+group :test do
+  gem 'faker', '~> 1.3.0'
+  gem 'database_cleaner', '~> 1.2.0'
+  gem 'shoulda-matchers', '~> 2.5.0'
+end
