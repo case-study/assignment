@@ -20,15 +20,20 @@ ActiveRecord::Schema.define(version: 20140912202508) do
     t.integer  "user_id"
   end
 
+  add_index "collections", ["user_id"], name: "index_collections_on_user_id"
+
   create_table "monuments", force: true do |t|
     t.string   "name"
     t.string   "description"
     t.integer  "collection_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "monuments", ["collection_id"], name: "index_monuments_on_collection_id"
+  add_index "monuments", ["name"], name: "index_monuments_on_name"
+  add_index "monuments", ["user_id"], name: "index_monuments_on_user_id"
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

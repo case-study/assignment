@@ -5,7 +5,7 @@ class MonumentsController < ApplicationController
   # GET /monuments
   # GET /monuments.json
   def index
-    @monuments = @collection.monuments
+    @monuments = current_user.monuments.where(:collection_id => params[:collection_id])
   end
 
   # GET /monuments/1
@@ -15,7 +15,8 @@ class MonumentsController < ApplicationController
 
   # GET /monuments/new
   def new
-    @monument = @collection.monuments.build
+    @monument = current_user.monuments.build(:collection_id => @collection.id)
+    #@collection.monuments.build
   end
 
   # GET /monuments/1/edit
@@ -25,7 +26,7 @@ class MonumentsController < ApplicationController
   # POST /monuments
   # POST /monuments.json
   def create
-    @monument = @collection.monuments.create(monument_params)
+    @monument = current_user.monuments.create(monument_params)
 
     respond_to do |format|
       if @monument.save
@@ -72,7 +73,7 @@ class MonumentsController < ApplicationController
     end
 
     def set_monument
-      unless @monument = @collection.monuments.where(id: params[:id]).first
+      unless @monument = current_user.monuments.where(id: params[:id], :collection_id => @collection.id).first
         flash[:alert] = 'Monument not found.'
         redirect_to action: "index"
       end
@@ -80,6 +81,8 @@ class MonumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def monument_params
-      params.require(:monument).permit(:name, :description, :category_list)
+      temp_params = params.require(:monument).permit(:name, :description, :category_list)
+      temp_params["collection_id"] = @collection.id
+      temp_params
     end
 end
